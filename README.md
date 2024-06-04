@@ -18,6 +18,18 @@ RouteAI/
 └── README.md
 ```
 
+## Overall Architecture with OpenAI Integration
+```
+[Client] --> [API Gateway (FastAPI)] --> [Message Queue (Kafka-python)] --> [AI Model (OpenAI API)] --> [Dynamic Endpoint Registry (Redis)]
+                                                                                                     |
+                                                                                                     v
+                                                                                             [Load Balancer (Traefik/NGINX configurations)]
+                                                                                                     |
+        ---------------------------------------------------------------------------------------------------------------------------------
+        |                          |                       |                                            |
+[Endpoint 1]           [Endpoint 2]         [Endpoint 3]                    [Endpoint N]
+
+```
 
 
 ## Installation
