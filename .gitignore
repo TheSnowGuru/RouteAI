@@ -1,1 +1,5 @@
 .aider*
+__pycache__/message_queue.cpython-310.pyc
+__pycache__/diff_generator.cpython-310.pyc
+__pycache__/api_gateway.cpython-310.pyc
+__pycache__/ai_model.cpython-310.pyc
