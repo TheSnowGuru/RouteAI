@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+kafka-python
+openai
+redis
+prometheus_client
+loguru
