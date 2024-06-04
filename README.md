@@ -31,6 +31,15 @@ RouteAI/
 
 ```
 
+# RouteAI with Token-Efficient Diff Generation
+
+## New feature
+This feature implements an intelligent routing system using OpenAI's API for data analysis and token-efficient text diff generation for subsequent text modifications. This feature reduces token usage and speeds up the process by only sending the changes in a diff format.
+
+## Installation
+
+1. Clone the repository:
+
 
 ## Installation
 
