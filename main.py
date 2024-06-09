@@ -1,27 +1,22 @@
 from fastapi import FastAPI, Request
-from api_gateway import app
-from message_queue import send_message
-from ai_model import analyze_data
-from endpoint_registry import update_endpoint, get_endpoint_metadata
-from load_balancer import update_traefik_config
-from monitor_logging import process_request
-from api_gateway import app
-from message_queue import send_message
-from ai_model import generate_initial_output, generate_diff_output
-from endpoint_registry import update_endpoint, get_endpoint_metadata
-from load_balancer import update_traefik_config
-from monitor_logging import process_request
-from diff_generator import generate_diff, diff_to_json, apply_diff
-import asyncio
+from fastapi import FastAPI, Request
+from ai_model import analyze_data, generate_initial_output, generate_diff_output
 
 app = FastAPI()
 
 @app.post("/data")
 async def receive_data(request: Request):
     data = await request.json()
-    routing_decision = await analyze_data(data)
-    # Route to the appropriate endpoint based on the decision
-    return {"status": "processed", "routing_decision": routing_decision}
+    if data["type"] == "analyze":
+        result = await analyze_data(data["data"])
+    elif data["type"] == "generate_initial":
+        result = await generate_initial_output(data["input_text"])
+    elif data["type"] == "generate_diff":
+        result = await generate_diff_output(data["original_text"], data["modified_text"])
+    else:
+        result = {"error": "Invalid type"}
+    
+    return {"status": "processed", "result": result}
 
 
 # For demonstration purposes, here we only run the API Gateway
