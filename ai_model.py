@@ -11,7 +11,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 async def analyze_data(data):
     response = openai.Completion.create(
-        model="text-davinci-003",
+        model="gpt-4",
         prompt=f"Analyze the following data and suggest the appropriate routing endpoint: {data}",
         max_tokens=50
     )
@@ -20,7 +20,7 @@ async def analyze_data(data):
 
 async def generate_initial_output(input_text):
     response = openai.Completion.create(
-        model="text-davinci-003",
+        model="gpt-4",
         prompt=input_text,
         max_tokens=1000
     )
@@ -31,7 +31,7 @@ async def generate_initial_output(input_text):
 async def generate_diff_output(original_text, modified_text):
     prompt = f"Given the original text:\n{original_text}\n\nAnd the modified text:\n{modified_text}\n\nProvide a JSON-formatted diff that includes the operations and text changes."
     response = openai.Completion.create(
-        model="text-davinci-003",
+        model="gpt-4",
         prompt=prompt,
         max_tokens=500
     )
