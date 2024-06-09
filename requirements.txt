@@ -6,3 +6,4 @@ redis
 prometheus_client
 loguru
 diff-match-patch
+requests
