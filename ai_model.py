@@ -1,5 +1,7 @@
 import openai
 import os
+from diff_generator import apply_diff as diff_gen_apply_diff
+from utils import apply_diff as utils_apply_diff
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -30,4 +32,12 @@ async def generate_diff_output(original_text, modified_text):
         max_tokens=500
     )
     diff_output = response.choices[0].text.strip()
-    return diff_output
+    # Apply the diff using both diff_generator and utils
+    diff_gen_result = diff_gen_apply_diff(original_text, diff_output)
+    utils_result = utils_apply_diff(original_text, diff_output)
+    
+    return {
+        "diff_output": diff_output,
+        "diff_gen_result": diff_gen_result,
+        "utils_result": utils_result
+    }
