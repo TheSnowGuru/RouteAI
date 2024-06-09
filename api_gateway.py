@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Request
 import asyncio
-from ai_model import analyze_data
-from ai_model import generate_initial_output, generate_diff_output
-from diff_generator import generate_diff, diff_to_json, apply_diff
+from ai_model import analyze_data, generate_initial_output, generate_diff_output
+from diff_generator import generate_diff, diff_to_json
+from utils import apply_diff
 
 app = FastAPI()
 
