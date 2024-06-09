@@ -2,6 +2,10 @@ import openai
 import os
 from diff_generator import apply_diff as diff_gen_apply_diff
 from utils import apply_diff as utils_apply_diff
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
