@@ -2,9 +2,11 @@ import sys
 import requests
 
 def fetch_url(url):
-    # Placeholder function to fetch the URL
-    # This will be implemented later
-    return {"status": "fetched", "url": url}
+    response = requests.get(url)
+    if response.status_code == 200:
+        return {"status": "fetched", "url": url, "content": response.text}
+    else:
+        return {"status": "error", "url": url, "content": None}
 
 def main():
     while True:
@@ -30,6 +32,11 @@ def main():
             # Send a request to the fetched API
             response = requests.post(endpoint, headers={"Authorization": f"Bearer {api_key}"}, json=payload)
             print(f"Response: {response.json()}")
+        elif action == "save":
+            # Save the data received
+            key = input("Please enter the key to save the data: ")
+            save_payload(key, fetch_result["content"])
+            print(f"Data saved with key: {key}")
         else:
             print("Invalid action. Please try again.")
 

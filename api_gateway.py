@@ -9,9 +9,13 @@ app = FastAPI()
 @app.post("/data")
 async def receive_data(request: Request):
     data = await request.json()
-    routing_decision = await analyze_data(data)
-    # Route to the appropriate endpoint based on the decision
-    return {"status": "processed", "routing_decision": routing_decision}
+    if data["type"] == "analyze":
+        routing_decision = await analyze_data(data)
+        # Route to the appropriate endpoint based on the decision
+        return {"status": "processed", "routing_decision": routing_decision}
+    elif data["type"] == "fetch_url":
+        result = fetch_url(data["url"])
+        return {"status": "processed", "result": result}
 
 
 #relates to the new feature to become fast and save tokens

@@ -21,6 +21,8 @@ async def receive_data(request: Request):
             result = await generate_initial_output(data["input_text"])
     elif data["type"] == "generate_diff":
         result = await generate_diff_output(data["original_text"], data["modified_text"])
+    elif data["type"] == "fetch_url":
+        result = fetch_url(data["url"])
     else:
         result = {"error": "Invalid type"}
     
