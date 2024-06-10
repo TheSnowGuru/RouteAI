@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from ai_model import analyze_data, generate_initial_output, generate_diff_output
+from commands import fetch_url
 from payload_storage import get_payload
 
 app = FastAPI()

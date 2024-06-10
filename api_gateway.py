@@ -3,6 +3,7 @@ import asyncio
 from ai_model import analyze_data, generate_initial_output, generate_diff_output
 from diff_generator import generate_diff, diff_to_json
 from utils import apply_diff
+from commands import fetch_url
 
 app = FastAPI()
 

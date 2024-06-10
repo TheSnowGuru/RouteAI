@@ -1,5 +1,6 @@
 import sys
 import requests
+from payload_storage import save_payload
 
 def fetch_url(url):
     response = requests.get(url)
