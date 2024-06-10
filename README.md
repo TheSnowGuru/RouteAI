@@ -39,6 +39,10 @@ RouteAI/
 ## New feature
 This feature implements an intelligent routing system using OpenAI's API for data analysis and token-efficient text diff generation for subsequent text modifications. This feature reduces token usage and speeds up the process by only sending the changes in a diff format.
 
+## New Feature: Learning and Saving API Call Payloads
+
+This feature allows the system to learn and save the payloads for each integration with an API. If the user is satisfied with the calls, the system can build the API call for later usage without calling the AI model API again, but just firing a regular call.
+
 ## Installation
 
 1. Clone the repository:
@@ -58,6 +62,17 @@ pip install -r requirements.txt
 3. Set up environment variables:
 export OPENAI_API_KEY='your_openai_api_key'
 
+
+## Environment Variables
+
+Make sure to set the following environment variables in your `.env` file:
+
+```
+OPENAI_API_KEY=your_openai_api_key_here
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_DB=1
+```
 
 ## Running the Application
 
@@ -87,6 +102,10 @@ To test the API routing, you can use the provided `test_api.py` script. This scr
 3. The script will send different payloads to the API and print the responses.
 
 ## Usage
+
+### Learning and Saving API Call Payloads
+
+The system will automatically save the payloads for each API call. If the same call is made again, the system will use the saved payload instead of calling the AI model API.
 
 Send a POST request to the API Gateway with JSON data:
 POST /data
